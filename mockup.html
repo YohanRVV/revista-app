@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup · Revista Digital</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .screen { scroll-margin-top: 80px; }
+    .page-shadow {
+        box-shadow:
+            0 0 0 1px rgba(0,0,0,0.05),
+            0 10px 40px rgba(0,0,0,0.3),
+            inset -12px 0 24px -12px rgba(0,0,0,0.3);
+    }
+    .book {
+        perspective: 2500px;
+    }
+    .book .pages {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        transform-style: preserve-3d;
+        transform: rotateY(-4deg);
+        gap: 2px;
+    }
+    .book .spread {
+        aspect-ratio: 3/4;
+    }
+    .flip-icon {
+        animation: flip 2.5s ease-in-out infinite;
+        transform-origin: left center;
+    }
+    @keyframes flip {
+        0%, 100% { transform: rotateY(0deg); }
+        50% { transform: rotateY(-60deg); }
+    }
+    .tab-active { background: #fff; color: #0f172a; }
+</style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+<nav class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-slate-900 font-black">R</div>
+            <div>
+                <p class="font-bold leading-tight">Revista Digital · Mockup</p>
+                <p class="text-xs text-white/50">Navegación entre pantallas</p>
+            </div>
+        </div>
+        <div class="flex gap-2 text-sm">
+            <a href="#cliente-home" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20">Home Cliente</a>
+            <a href="#cliente-viewer" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20">Visor</a>
+            <a href="#admin-login" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20">Login</a>
+            <a href="#admin-list" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20">Admin</a>
+            <a href="#admin-edit" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20">Editar revista</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ======================== HERO MOCKUP INTRO ======================== -->
+<section class="bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 text-white py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <p class="text-amber-300 font-semibold tracking-widest uppercase text-sm">Mockup de aplicación</p>
+        <h1 class="text-5xl font-black mt-2">Revista Digital Interactiva</h1>
+        <p class="mt-4 text-white/70 max-w-2xl mx-auto">
+            Laravel + React + Tailwind · Panel admin para subir páginas, vista pública con efecto de hojeo real usando <code class="text-amber-300">react-pageflip</code>.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-2 text-xs">
+            <span class="bg-white/10 px-3 py-1 rounded-full">Laravel 12</span>
+            <span class="bg-white/10 px-3 py-1 rounded-full">Inertia.js</span>
+            <span class="bg-white/10 px-3 py-1 rounded-full">React 18</span>
+            <span class="bg-white/10 px-3 py-1 rounded-full">Tailwind CSS 4</span>
+            <span class="bg-white/10 px-3 py-1 rounded-full">SQLite</span>
+            <span class="bg-white/10 px-3 py-1 rounded-full">react-pageflip</span>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== 1. CLIENTE HOME ======================== -->
+<section id="cliente-home" class="screen py-12 border-t">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-xs uppercase tracking-widest text-slate-400">Pantalla 1 · Cliente</p>
+        <h2 class="text-3xl font-bold mb-8">Home · Listado de ediciones publicadas</h2>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl border">
+            <!-- mock browser chrome -->
+            <div class="flex items-center gap-2 px-4 py-2 bg-slate-200 border-b">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                <span class="ml-4 text-xs text-slate-500 font-mono">revista-app.test/</span>
+            </div>
+
+            <div class="bg-gradient-to-b from-slate-900 to-slate-800 text-white p-10">
+                <header class="flex items-center justify-between mb-10">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center text-slate-900 font-black">R</div>
+                        <div>
+                            <h1 class="font-bold">Revista Digital</h1>
+                            <p class="text-xs text-white/60">Ediciones interactivas</p>
+                        </div>
+                    </div>
+                    <a class="text-sm text-white/70 hover:text-white">Acceso admin</a>
+                </header>
+
+                <h3 class="text-4xl font-bold">Ediciones publicadas</h3>
+                <p class="text-white/60 mt-2 mb-8">Elige una edición para vivir la experiencia de hojear la revista.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- card -->
+                    <div class="rounded-2xl overflow-hidden bg-slate-700 border border-white/10">
+                        <div class="aspect-[3/4] bg-gradient-to-br from-amber-400 to-red-500 relative">
+                            <div class="absolute top-4 left-4 text-white font-black text-2xl">VOL 01</div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <p class="text-xs opacity-75">ABR 2026</p>
+                                <p class="font-bold text-lg">Edición inaugural</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-amber-300 font-semibold uppercase tracking-wider">Vol. 01 · Abr 2026</p>
+                            <h4 class="font-bold mt-1">Revista Demo · Inaugural</h4>
+                            <p class="text-sm text-white/60 mt-1 line-clamp-2">Primera edición de demostración con efecto de hojeo real.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-slate-700 border border-white/10">
+                        <div class="aspect-[3/4] bg-gradient-to-br from-indigo-400 to-purple-600 relative">
+                            <div class="absolute top-4 left-4 text-white font-black text-2xl">VOL 02</div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <p class="text-xs opacity-75">MAY 2026</p>
+                                <p class="font-bold text-lg">Especial diseño</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-amber-300 font-semibold uppercase tracking-wider">Vol. 02 · May 2026</p>
+                            <h4 class="font-bold mt-1">Especial Diseño</h4>
+                            <p class="text-sm text-white/60 mt-1 line-clamp-2">Entrevistas y galería fotográfica.</p>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-slate-700 border border-white/10">
+                        <div class="aspect-[3/4] bg-gradient-to-br from-emerald-400 to-teal-600 relative">
+                            <div class="absolute top-4 left-4 text-white font-black text-2xl">VOL 03</div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <p class="text-xs opacity-75">JUN 2026</p>
+                                <p class="font-bold text-lg">Temporada verano</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-amber-300 font-semibold uppercase tracking-wider">Vol. 03 · Jun 2026</p>
+                            <h4 class="font-bold mt-1">Temporada Verano</h4>
+                            <p class="text-sm text-white/60 mt-1 line-clamp-2">Reportajes, entrevistas, recomendaciones.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== 2. CLIENTE VIEWER ======================== -->
+<section id="cliente-viewer" class="screen py-12 border-t bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-xs uppercase tracking-widest text-slate-400">Pantalla 2 · Cliente</p>
+        <h2 class="text-3xl font-bold mb-8">Visor · Hojear la revista</h2>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl border">
+            <div class="flex items-center gap-2 px-4 py-2 bg-slate-200 border-b">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                <span class="ml-4 text-xs text-slate-500 font-mono">revista-app.test/revista/revista-demo-inaugural</span>
+            </div>
+
+            <div class="bg-gradient-to-br from-black via-slate-900 to-slate-950 text-white p-6">
+                <header class="flex items-center justify-between mb-8">
+                    <a class="text-sm text-white/70 hover:text-white">← Volver a ediciones</a>
+                    <div class="text-right">
+                        <p class="text-xs text-amber-300 uppercase tracking-wider">Vol. 01 · Abril 2026</p>
+                        <h1 class="font-bold">Revista Demo · Edición Inaugural</h1>
+                    </div>
+                </header>
+
+                <!-- Book mock -->
+                <div class="book flex justify-center py-8">
+                    <div class="pages w-full max-w-4xl">
+                        <!-- left page -->
+                        <div class="spread page-shadow bg-white rounded-l-sm overflow-hidden relative">
+                            <img src="https://picsum.photos/seed/page3/800/1100" class="w-full h-full object-cover" />
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white text-xs px-3 py-2 flex justify-between">
+                                <span>Artículo principal</span>
+                                <span>3 / 8</span>
+                            </div>
+                        </div>
+                        <!-- right page -->
+                        <div class="spread page-shadow bg-white rounded-r-sm overflow-hidden relative">
+                            <img src="https://picsum.photos/seed/page4/800/1100" class="w-full h-full object-cover" />
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent text-white text-xs px-3 py-2 flex justify-between">
+                                <span>Reportaje</span>
+                                <span>4 / 8</span>
+                            </div>
+                            <!-- corner flip hint -->
+                            <div class="absolute top-2 right-2 text-4xl flip-icon">⤴</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- controls -->
+                <div class="flex justify-center">
+                    <div class="flex items-center gap-4 bg-white/10 backdrop-blur rounded-full px-5 py-2 text-sm">
+                        <button class="hover:text-amber-300">◀ Anterior</button>
+                        <span class="tabular-nums">3 / 8</span>
+                        <button class="hover:text-amber-300">Siguiente ▶</button>
+                    </div>
+                </div>
+
+                <p class="text-center text-xs text-white/40 mt-6">
+                    Arrastra la esquina de la página, toca los lados o usa los controles. Efecto real con react-pageflip.
+                </p>
+            </div>
+        </div>
+
+        <!-- interacciones -->
+        <div class="mt-8 grid md:grid-cols-3 gap-4">
+            <div class="bg-white p-5 rounded-xl border">
+                <div class="text-2xl mb-2">🖱️</div>
+                <h4 class="font-bold">Arrastrar esquina</h4>
+                <p class="text-sm text-slate-600">Toma la esquina de la página y arrástrala como si fuera papel real.</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border">
+                <div class="text-2xl mb-2">👆</div>
+                <h4 class="font-bold">Tap lateral</h4>
+                <p class="text-sm text-slate-600">Toca el lado izquierdo o derecho para avanzar/retroceder una página.</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border">
+                <div class="text-2xl mb-2">📱</div>
+                <h4 class="font-bold">Responsive</h4>
+                <p class="text-sm text-slate-600">En móvil muestra una página a la vez; en desktop muestra el spread doble.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== 3. ADMIN LOGIN ======================== -->
+<section id="admin-login" class="screen py-12 border-t">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-xs uppercase tracking-widest text-slate-400">Pantalla 3 · Admin</p>
+        <h2 class="text-3xl font-bold mb-8">Login del panel administrativo</h2>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl border bg-white">
+            <div class="flex items-center gap-2 px-4 py-2 bg-slate-200 border-b">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                <span class="ml-4 text-xs text-slate-500 font-mono">revista-app.test/login</span>
+            </div>
+            <div class="p-16 flex justify-center bg-slate-100">
+                <div class="bg-white rounded-xl shadow-md p-8 w-full max-w-md">
+                    <div class="w-10 h-10 rounded-full bg-amber-400 mb-6"></div>
+                    <h3 class="text-xl font-bold mb-1">Iniciar sesión</h3>
+                    <p class="text-sm text-slate-500 mb-6">Acceso al panel administrativo</p>
+                    <label class="block text-sm font-medium">Email</label>
+                    <input class="mt-1 w-full border rounded px-3 py-2 mb-4" value="admin@revista.test" disabled />
+                    <label class="block text-sm font-medium">Contraseña</label>
+                    <input class="mt-1 w-full border rounded px-3 py-2 mb-6" type="password" value="password" disabled />
+                    <button class="w-full bg-slate-900 text-white rounded py-2 font-semibold">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== 4. ADMIN LIST ======================== -->
+<section id="admin-list" class="screen py-12 border-t bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-xs uppercase tracking-widest text-slate-400">Pantalla 4 · Admin</p>
+        <h2 class="text-3xl font-bold mb-8">Listado de revistas (panel administrativo)</h2>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl border bg-white">
+            <div class="flex items-center gap-2 px-4 py-2 bg-slate-200 border-b">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                <span class="ml-4 text-xs text-slate-500 font-mono">revista-app.test/admin/magazines</span>
+            </div>
+            <!-- nav admin -->
+            <nav class="border-b px-6 py-3 bg-white flex items-center justify-between">
+                <div class="flex items-center gap-6">
+                    <div class="w-8 h-8 bg-slate-900 rounded"></div>
+                    <a class="text-sm font-semibold border-b-2 border-indigo-500 pb-3 -mb-3">Revistas</a>
+                    <a class="text-sm text-slate-600">Ver sitio público</a>
+                </div>
+                <div class="text-sm text-slate-600">Administrador ▾</div>
+            </nav>
+            <header class="bg-white border-b px-6 py-4 flex items-center justify-between">
+                <h3 class="font-semibold">Revistas</h3>
+                <button class="bg-slate-900 text-white text-sm px-4 py-2 rounded">+ Nueva revista</button>
+            </header>
+            <div class="bg-slate-50 p-6">
+                <div class="bg-white rounded shadow-sm divide-y">
+                    <!-- row -->
+                    <div class="flex items-center gap-4 p-4">
+                        <div class="w-16 h-20 rounded bg-gradient-to-br from-amber-400 to-red-500"></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <p class="font-semibold">Revista Demo · Edición Inaugural</p>
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Publicada</span>
+                            </div>
+                            <p class="text-sm text-slate-500">Vol. 01 · Abril 2026 · 8 páginas</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <a class="text-indigo-600">Ver</a>
+                            <a class="text-slate-700">Editar</a>
+                            <button class="bg-red-600 text-white px-3 py-1.5 rounded text-xs">Eliminar</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4">
+                        <div class="w-16 h-20 rounded bg-gradient-to-br from-indigo-400 to-purple-600"></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <p class="font-semibold">Especial Diseño</p>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">Borrador</span>
+                            </div>
+                            <p class="text-sm text-slate-500">Vol. 02 · Mayo 2026 · 4 páginas</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <a class="text-slate-700">Editar</a>
+                            <button class="bg-red-600 text-white px-3 py-1.5 rounded text-xs">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== 5. ADMIN EDIT ======================== -->
+<section id="admin-edit" class="screen py-12 border-t">
+    <div class="max-w-7xl mx-auto px-6">
+        <p class="text-xs uppercase tracking-widest text-slate-400">Pantalla 5 · Admin</p>
+        <h2 class="text-3xl font-bold mb-8">Editor de revista · subir páginas</h2>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl border bg-white">
+            <div class="flex items-center gap-2 px-4 py-2 bg-slate-200 border-b">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                <span class="ml-4 text-xs text-slate-500 font-mono">revista-app.test/admin/magazines/1/edit</span>
+            </div>
+            <div class="bg-slate-50 p-6 space-y-6">
+                <!-- info -->
+                <div class="bg-white shadow-sm rounded-lg p-6 space-y-4">
+                    <h3 class="font-semibold">Información general</h3>
+                    <div>
+                        <label class="block text-sm font-medium">Título</label>
+                        <input class="mt-1 w-full border rounded px-3 py-2" value="Revista Demo · Edición Inaugural" />
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium">Edición</label>
+                            <input class="mt-1 w-full border rounded px-3 py-2" value="Vol. 01 · Abril 2026" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium">Portada</label>
+                            <input type="file" class="mt-1 w-full text-sm" />
+                        </div>
+                    </div>
+                    <label class="inline-flex items-center gap-2">
+                        <input type="checkbox" checked />
+                        <span class="text-sm">Publicada</span>
+                    </label>
+                    <button class="bg-slate-900 text-white px-4 py-2 rounded text-sm">Guardar cambios</button>
+                </div>
+
+                <!-- uploader -->
+                <div class="bg-white shadow-sm rounded-lg p-6 space-y-3">
+                    <h3 class="font-semibold">Agregar páginas</h3>
+                    <p class="text-sm text-slate-500">Sube una o varias imágenes (JPG/PNG).</p>
+                    <div class="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center text-slate-500">
+                        <p class="text-3xl mb-2">📤</p>
+                        <p>Arrastra archivos o haz clic para seleccionar</p>
+                    </div>
+                    <button class="bg-slate-900 text-white px-4 py-2 rounded text-sm">Subir páginas</button>
+                </div>
+
+                <!-- pages grid -->
+                <div class="bg-white shadow-sm rounded-lg p-6">
+                    <h3 class="font-semibold mb-4">Páginas (8)</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="border rounded overflow-hidden">
+                            <div class="aspect-[3/4] bg-gradient-to-br from-rose-300 to-pink-400"></div>
+                            <div class="p-2 flex justify-between text-xs">
+                                <span class="text-slate-500">#1</span>
+                                <button class="text-red-600">Eliminar</button>
+                            </div>
+                        </div>
+                        <div class="border rounded overflow-hidden">
+                            <div class="aspect-[3/4] bg-gradient-to-br from-amber-300 to-orange-400"></div>
+                            <div class="p-2 flex justify-between text-xs">
+                                <span class="text-slate-500">#2</span>
+                                <button class="text-red-600">Eliminar</button>
+                            </div>
+                        </div>
+                        <div class="border rounded overflow-hidden">
+                            <div class="aspect-[3/4] bg-gradient-to-br from-emerald-300 to-green-500"></div>
+                            <div class="p-2 flex justify-between text-xs">
+                                <span class="text-slate-500">#3</span>
+                                <button class="text-red-600">Eliminar</button>
+                            </div>
+                        </div>
+                        <div class="border rounded overflow-hidden">
+                            <div class="aspect-[3/4] bg-gradient-to-br from-sky-300 to-blue-500"></div>
+                            <div class="p-2 flex justify-between text-xs">
+                                <span class="text-slate-500">#4</span>
+                                <button class="text-red-600">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== ARQUITECTURA ======================== -->
+<section class="py-16 border-t bg-slate-900 text-white">
+    <div class="max-w-5xl mx-auto px-6">
+        <p class="text-xs uppercase tracking-widest text-amber-300">Arquitectura</p>
+        <h2 class="text-3xl font-bold mt-2 mb-10">Flujo de datos</h2>
+
+        <div class="grid md:grid-cols-3 gap-6 text-sm">
+            <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div class="text-amber-300 text-xs uppercase font-bold mb-2">1. Admin</div>
+                <h3 class="font-bold mb-2 text-lg">Subir contenido</h3>
+                <p class="text-white/70">
+                    El admin inicia sesión, crea una Revista y sube imágenes de cada página. Se almacenan en
+                    <code>storage/app/public/magazines/</code>.
+                </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div class="text-amber-300 text-xs uppercase font-bold mb-2">2. Laravel</div>
+                <h3 class="font-bold mb-2 text-lg">API / Inertia</h3>
+                <p class="text-white/70">
+                    Los modelos <code>Magazine</code> y <code>MagazinePage</code> persisten en SQLite.
+                    Inertia entrega los datos directamente a React sin build de API separada.
+                </p>
+            </div>
+            <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div class="text-amber-300 text-xs uppercase font-bold mb-2">3. Cliente</div>
+                <h3 class="font-bold mb-2 text-lg">Visor flipbook</h3>
+                <p class="text-white/70">
+                    React renderiza el listado de revistas y el componente <code>&lt;Flipbook/&gt;</code>
+                    con <code>react-pageflip</code> reproduce el efecto de hojear.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-12 bg-black/40 rounded-xl p-6 font-mono text-xs overflow-x-auto">
+<pre class="text-white/80">
+revista-app/
+├── app/
+│   ├── Models/
+│   │   ├── Magazine.php
+│   │   └── MagazinePage.php
+│   └── Http/Controllers/
+│       ├── MagazineController.php            (cliente)
+│       └── Admin/
+│           ├── MagazineController.php        (admin CRUD)
+│           └── MagazinePageController.php    (admin pages upload)
+├── database/
+│   ├── database.sqlite
+│   └── migrations/ ... magazines, magazine_pages
+├── resources/js/
+│   ├── Components/Magazine/Flipbook.jsx      ← react-pageflip
+│   └── Pages/
+│       ├── Public/Home.jsx                   (listado)
+│       ├── Public/Viewer.jsx                 (flipbook)
+│       └── Admin/Magazines/ (Index, Create, Edit)
+├── routes/web.php
+└── mockup.html                               ← este archivo
+</pre>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-slate-950 text-white/50 text-center text-sm py-8">
+    Mockup · Revista Digital · Laravel + React + Tailwind
+</footer>
+
+</body>
+</html>
