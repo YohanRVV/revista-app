@@ -1,0 +1,19 @@
+# Sube este archivo a htdocs/ (raíz del dominio en InfinityFree).
+# Reescribe TODO el tráfico a la subcarpeta public/ donde vive Laravel.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si la URL apunta a un archivo o carpeta dentro de public/, sírvelo
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Bloquea acceso directo a archivos sensibles
+<FilesMatch "^\.env|composer\.(json|lock)|package\.json|package-lock\.json|artisan$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquea acceso directo a carpetas internas de Laravel
+RedirectMatch 403 ^/(\.env|\.git|app|bootstrap|config|database|resources|routes|storage|tests|vendor)(/|$)
